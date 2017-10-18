@@ -387,50 +387,50 @@ func decodeIPv4or6(data []byte, p gopacket.PacketBuilder) error {
 
 func init() {
 	// Here we link up all enumerations with their respective names and decoders.
-	for i := 0; i < 65536; i++ {
-		EthernetTypeMetadata[i] = EnumMetadata{
-			DecodeWith: errorFunc(fmt.Sprintf("Unable to decode ethernet type %d", i)),
-			Name:       fmt.Sprintf("UnknownEthernetType(%d)", i),
-		}
-		PPPTypeMetadata[i] = EnumMetadata{
-			DecodeWith: errorFunc(fmt.Sprintf("Unable to decode PPP type %d", i)),
-			Name:       fmt.Sprintf("UnknownPPPType(%d)", i),
-		}
-	}
-	for i := 0; i < 256; i++ {
-		IPProtocolMetadata[i] = EnumMetadata{
-			DecodeWith: errorFunc(fmt.Sprintf("Unable to decode IP protocol %d", i)),
-			Name:       fmt.Sprintf("UnknownIPProtocol(%d)", i),
-		}
-		SCTPChunkTypeMetadata[i] = EnumMetadata{
-			DecodeWith: errorFunc(fmt.Sprintf("Unable to decode SCTP chunk type %d", i)),
-			Name:       fmt.Sprintf("UnknownSCTPChunkType(%d)", i),
-		}
-		PPPoECodeMetadata[i] = EnumMetadata{
-			DecodeWith: errorFunc(fmt.Sprintf("Unable to decode PPPoE code %d", i)),
-			Name:       fmt.Sprintf("UnknownPPPoECode(%d)", i),
-		}
-		LinkTypeMetadata[i] = EnumMetadata{
-			DecodeWith: errorFunc(fmt.Sprintf("Unable to decode link type %d", i)),
-			Name:       fmt.Sprintf("UnknownLinkType(%d)", i),
-		}
-		FDDIFrameControlMetadata[i] = EnumMetadata{
-			DecodeWith: errorFunc(fmt.Sprintf("Unable to decode FDDI frame control %d", i)),
-			Name:       fmt.Sprintf("UnknownFDDIFrameControl(%d)", i),
-		}
-		EAPOLTypeMetadata[i] = EnumMetadata{
-			DecodeWith: errorFunc(fmt.Sprintf("Unable to decode EAPOL type %d", i)),
-			Name:       fmt.Sprintf("UnknownEAPOLType(%d)", i),
-		}
-		ProtocolFamilyMetadata[i] = EnumMetadata{
-			DecodeWith: errorFunc(fmt.Sprintf("Unable to decode protocol family %d", i)),
-			Name:       fmt.Sprintf("UnknownProtocolFamily(%d)", i),
-		}
-		Dot11TypeMetadata[i] = EnumMetadata{
-			DecodeWith: errorFunc(fmt.Sprintf("Unable to decode Dot11 type %d", i)),
-			Name:       fmt.Sprintf("UnknownDot11Type(%d)", i),
-		}
-	}
+	// for i := 0; i < 65536; i++ {
+	// 	EthernetTypeMetadata[i] = EnumMetadata{
+	// 		DecodeWith: errorFunc(fmt.Sprintf("Unable to decode ethernet type %d", i)),
+	// 		Name:       fmt.Sprintf("UnknownEthernetType(%d)", i),
+	// 	}
+	// 	PPPTypeMetadata[i] = EnumMetadata{
+	// 		DecodeWith: errorFunc(fmt.Sprintf("Unable to decode PPP type %d", i)),
+	// 		Name:       fmt.Sprintf("UnknownPPPType(%d)", i),
+	// 	}
+	// }
+	// for i := 0; i < 256; i++ {
+	// 	IPProtocolMetadata[i] = EnumMetadata{
+	// 		DecodeWith: errorFunc(fmt.Sprintf("Unable to decode IP protocol %d", i)),
+	// 		Name:       fmt.Sprintf("UnknownIPProtocol(%d)", i),
+	// 	}
+	// 	SCTPChunkTypeMetadata[i] = EnumMetadata{
+	// 		DecodeWith: errorFunc(fmt.Sprintf("Unable to decode SCTP chunk type %d", i)),
+	// 		Name:       fmt.Sprintf("UnknownSCTPChunkType(%d)", i),
+	// 	}
+	// 	PPPoECodeMetadata[i] = EnumMetadata{
+	// 		DecodeWith: errorFunc(fmt.Sprintf("Unable to decode PPPoE code %d", i)),
+	// 		Name:       fmt.Sprintf("UnknownPPPoECode(%d)", i),
+	// 	}
+	// 	LinkTypeMetadata[i] = EnumMetadata{
+	// 		DecodeWith: errorFunc(fmt.Sprintf("Unable to decode link type %d", i)),
+	// 		Name:       fmt.Sprintf("UnknownLinkType(%d)", i),
+	// 	}
+	// 	FDDIFrameControlMetadata[i] = EnumMetadata{
+	// 		DecodeWith: errorFunc(fmt.Sprintf("Unable to decode FDDI frame control %d", i)),
+	// 		Name:       fmt.Sprintf("UnknownFDDIFrameControl(%d)", i),
+	// 	}
+	// 	EAPOLTypeMetadata[i] = EnumMetadata{
+	// 		DecodeWith: errorFunc(fmt.Sprintf("Unable to decode EAPOL type %d", i)),
+	// 		Name:       fmt.Sprintf("UnknownEAPOLType(%d)", i),
+	// 	}
+	// 	ProtocolFamilyMetadata[i] = EnumMetadata{
+	// 		DecodeWith: errorFunc(fmt.Sprintf("Unable to decode protocol family %d", i)),
+	// 		Name:       fmt.Sprintf("UnknownProtocolFamily(%d)", i),
+	// 	}
+	// 	Dot11TypeMetadata[i] = EnumMetadata{
+	// 		DecodeWith: errorFunc(fmt.Sprintf("Unable to decode Dot11 type %d", i)),
+	// 		Name:       fmt.Sprintf("UnknownDot11Type(%d)", i),
+	// 	}
+	// }
 
 	EthernetTypeMetadata[EthernetTypeLLC] = EnumMetadata{DecodeWith: gopacket.DecodeFunc(decodeLLC), Name: "LLC", LayerType: LayerTypeLLC}
 	EthernetTypeMetadata[EthernetTypeIPv4] = EnumMetadata{DecodeWith: gopacket.DecodeFunc(decodeIPv4), Name: "IPv4", LayerType: LayerTypeIPv4}
