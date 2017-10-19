@@ -11,6 +11,7 @@ package bsdbpf
 import (
 	"errors"
 	"fmt"
+	"runtime"
 	"syscall"
 	"time"
 	"unsafe"
@@ -19,7 +20,13 @@ import (
 	"golang.org/x/sys/unix"
 )
 
-const wordSize = int(unsafe.Sizeof(uintptr(0)))
+var wordSize = int(unsafe.Sizeof(uintptr(0)))
+
+func init() {
+	if runtime.GOOS == "darwin" {
+		wordSize = 4
+	}
+}
 
 func bpfWordAlign(x int) int {
 	return (((x) + (wordSize - 1)) &^ (wordSize - 1))
@@ -176,11 +183,15 @@ func (b *BPFSniffer) pickBpfDevice() {
 	panic("failed to acquire a BPF device for read-write access")
 }
 
+func (b *BPFSniffer) SetBpf(insn []syscall.BpfInsn) error {
+	return syscall.SetBpf(b.fd, insn)
+}
+
 func (b *BPFSniffer) ReadPacketData() ([]byte, gopacket.CaptureInfo, error) {
 	var err error
 	if b.readBytesConsumed >= b.lastReadLen {
 		b.readBytesConsumed = 0
-		b.readBuffer = make([]byte, b.options.ReadBufLen)
+		// b.readBuffer = make([]byte, b.options.ReadBufLen)
 		b.lastReadLen, err = syscall.Read(b.fd, b.readBuffer)
 		if err != nil {
 			b.lastReadLen = 0
@@ -207,6 +218,10 @@ func (b *BPFSniffer) ReadPacketData() ([]byte, gopacket.CaptureInfo, error) {
 		Length:        len(rawFrame),
 	}
 	return rawFrame, captureInfo, nil
+}
+
+func (b *BPFSniffer) WritePacketData(data []byte) (n int, err error) {
+	return syscall.Write(b.fd, data)
 }
 
 // GetReadBufLen returns the BPF read buffer length
