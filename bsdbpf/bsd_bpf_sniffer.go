@@ -197,6 +197,9 @@ func (b *BPFSniffer) ReadPacketData() ([]byte, gopacket.CaptureInfo, error) {
 			b.lastReadLen = 0
 			return nil, gopacket.CaptureInfo{}, err
 		}
+		if err == nil && b.lastReadLen == 0 {
+			return nil, gopacket.CaptureInfo{}, ErrTimeout
+		}
 	}
 	hdr := (*unix.BpfHdr)(unsafe.Pointer(&b.readBuffer[b.readBytesConsumed]))
 	frameStart := b.readBytesConsumed + int(hdr.Hdrlen)
@@ -227,4 +230,30 @@ func (b *BPFSniffer) WritePacketData(data []byte) (n int, err error) {
 // GetReadBufLen returns the BPF read buffer length
 func (b *BPFSniffer) GetReadBufLen() int {
 	return b.options.ReadBufLen
+}
+
+// ErrTimeout is just a timeouterr
+var ErrTimeout = error(&TimeoutError{})
+
+// TimeoutError implements the net.Error interface
+type TimeoutError struct {
+}
+
+func (e *TimeoutError) String() string {
+	return "timeout"
+}
+
+// Timeout always returns true
+func (e *TimeoutError) Timeout() bool {
+	return true
+}
+
+// Temporary always returns true
+func (e *TimeoutError) Temporary() bool {
+	return true
+}
+
+// Error always returns timeout
+func (e *TimeoutError) Error() string {
+	return e.String()
 }
