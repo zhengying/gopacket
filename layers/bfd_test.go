@@ -9,9 +9,10 @@
 package layers
 
 import (
-	"github.com/google/gopacket"
 	"reflect"
 	"testing"
+
+	"github.com/zhengying/gopacket"
 )
 
 //******************************************************************************
@@ -89,11 +90,11 @@ func TestBFDNoAuth(t *testing.T) {
 			},
 			Payload: nil,
 		},
-		Version:    1,
-		Diagnostic: BFDDiagnosticNone,
-		State:      BFDStateDown,
-		Poll:       false,
-		Final:      false,
+		Version:                   1,
+		Diagnostic:                BFDDiagnosticNone,
+		State:                     BFDStateDown,
+		Poll:                      false,
+		Final:                     false,
 		ControlPlaneIndependent:   false,
 		AuthPresent:               false,
 		Demand:                    false,
@@ -139,11 +140,11 @@ func TestBFDAuthTypePassword(t *testing.T) {
 			},
 			Payload: nil,
 		},
-		Version:    1,
-		Diagnostic: BFDDiagnosticNone,
-		State:      BFDStateDown,
-		Poll:       false,
-		Final:      false,
+		Version:                   1,
+		Diagnostic:                BFDDiagnosticNone,
+		State:                     BFDStateDown,
+		Poll:                      false,
+		Final:                     false,
 		ControlPlaneIndependent:   false,
 		AuthPresent:               true,
 		Demand:                    false,
@@ -196,11 +197,11 @@ func TestBFDAuthTypeKeyedMD5(t *testing.T) {
 			},
 			Payload: nil,
 		},
-		Version:    1,
-		Diagnostic: BFDDiagnosticNone,
-		State:      BFDStateDown,
-		Poll:       false,
-		Final:      false,
+		Version:                   1,
+		Diagnostic:                BFDDiagnosticNone,
+		State:                     BFDStateDown,
+		Poll:                      false,
+		Final:                     false,
 		ControlPlaneIndependent:   false,
 		AuthPresent:               true,
 		Demand:                    false,
@@ -258,11 +259,11 @@ func TestBFDAuthTypeMeticulousKeyedSHA1(t *testing.T) {
 			},
 			Payload: nil,
 		},
-		Version:    1,
-		Diagnostic: BFDDiagnosticNone,
-		State:      BFDStateDown,
-		Poll:       false,
-		Final:      false,
+		Version:                   1,
+		Diagnostic:                BFDDiagnosticNone,
+		State:                     BFDStateDown,
+		Poll:                      false,
+		Final:                     false,
 		ControlPlaneIndependent:   false,
 		AuthPresent:               true,
 		Demand:                    false,

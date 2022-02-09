@@ -9,8 +9,9 @@
 package layers
 
 import (
-	"github.com/google/gopacket"
 	"testing"
+
+	"github.com/zhengying/gopacket"
 )
 
 func min(a, b int) int {

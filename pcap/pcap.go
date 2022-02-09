@@ -120,7 +120,7 @@ import (
 	"unsafe"
 
 	"github.com/ccsexyz/gopacket/layers"
-	"github.com/google/gopacket"
+	"github.com/zhengying/gopacket"
 )
 
 const errorBufferSize = 256

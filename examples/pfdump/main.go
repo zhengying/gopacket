@@ -11,12 +11,13 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/google/gopacket/dumpcommand"
-	"github.com/google/gopacket/examples/util"
-	"github.com/google/gopacket/pfring"
 	"log"
 	"os"
 	"strings"
+
+	"github.com/zhengying/gopacket/dumpcommand"
+	"github.com/zhengying/gopacket/examples/util"
+	"github.com/zhengying/gopacket/pfring"
 )
 
 var iface = flag.String("i", "eth0", "Interface to read packets from")

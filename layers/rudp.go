@@ -9,7 +9,8 @@ package layers
 import (
 	"encoding/binary"
 	"fmt"
-	"github.com/google/gopacket"
+
+	"github.com/zhengying/gopacket"
 )
 
 type RUDP struct {

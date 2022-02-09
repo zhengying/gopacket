@@ -7,9 +7,10 @@
 package layers
 
 import (
-	"github.com/google/gopacket"
 	"reflect"
 	"testing"
+
+	"github.com/zhengying/gopacket"
 )
 
 // testPacketOSPF3Hello is the packet:
